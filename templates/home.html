@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FlaskApp</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"
+    integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <h2>Welcome to TodoApp!</h2>
+  <ul id="todos">
+    {% for todo in todos %}
+    {% with todo=todo %}
+    {% include "todo.html" %}
+    {% endwith %}
+    {% endfor %}
+  </ul>
+
+  <form hx-post="/todo" hx-target="#todos" hx-swap="beforeend" hx-on::after-request="this.reset()">
+
+    <input name="label">
+    <button>Add</button>
+
+  </form>
+</body>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+</html>

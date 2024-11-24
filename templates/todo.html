@@ -1,0 +1,5 @@
+<li>
+	{{ todo.label }} - {{ todo.done }} -
+	<button hx-put="todo/toggle/{{ todo.id }}" hx-target="closest li" hx-swap="outerHTML">Toggle</button>
+	<button hx-delete="/todo/{{ todo.id }}" hx-target="closest li" hx-swap="outerHTML">Delete</button>
+</li>
